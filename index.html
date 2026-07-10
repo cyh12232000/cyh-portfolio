@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Huang Cheng-yu</title>
-    <script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
     <style>
         /* 當代藝廊極簡視覺風格 */
         body {
@@ -17,7 +16,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         header {
@@ -61,25 +60,57 @@
             color: #fff;
         }
 
-        /* Adobe 核心渲染容器 */
-        #adobe-dc-view {
+        /* 雙頁畫冊主容器：讓面試官像看實體書一樣往下滾動 */
+        .book-layout {
             width: 100%;
-            max-width: 1200px;
-            height: calc(100vh - 140px);
-            padding: 0 20px 30px 20px;
+            max-width: 1400px;
+            padding: 0 20px 50px 20px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-                padding: 20px;
-            }
-            #adobe-dc-view {
-                height: calc(100vh - 180px);
-            }
+        /* 封面與封底：單頁完美置中 */
+        .single-page-block {
+            width: 48%;
+            max-width: 600px;
+            height: 82vh;
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+            background: #fff;
+        }
+
+        /* 內頁：左右完美並排對開 */
+        .spread-block {
+            width: 100%;
+            height: 82vh;
+            display: flex;
+            justify-content: center;
+            gap: 4px; /* 書籍中縫微陰影感 */
+        }
+
+        .spread-left, .spread-right {
+            width: 48%;
+            max-width: 600px;
+            height: 100%;
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+            background: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 手機板自動彈性切換為單頁直式滾動，排版不擠壓 */
+        @media (max-width: 900px) {
+            .single-page-block { width: 100%; }
+            .spread-block { flex-direction: column; height: auto; gap: 20px; }
+            .spread-left, .spread-right { width: 100%; height: 82vh; }
         }
     </style>
 </head>
@@ -93,28 +124,35 @@
         <a href="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/view?usp=sharing" target="_blank" class="btn-download">DOWNLOAD FULL PDF</a>
     </header>
 
-    <div id="adobe-dc-view"></div>
+    <main class="book-layout">
+        
+        <div class="single-page-block">
+            <iframe src="portfolio.pdf#page=1&zoom=page-fit&toolbar=0&navpanes=0"></iframe>
+        </div>
 
-    <script type="text/javascript">
-        document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
-            var adobeDCView = new AdobeDC.View({
-                /* 使用相容於 Vercel 的通用開放型憑證金鑰 */
-                clientId: "b07671b4da6647208da096f4f347eb1a", 
-                divId: "adobe-dc-view"
-            });
-            adobeDCView.previewFile({
-                content: { location: { url: "portfolio.pdf" } },
-                metaData: { fileName: "Portfolio_Huang_Cheng_Yu.pdf" }
-            }, {
-                /* 核心亮點：強制指定使用 TWO_COLUMN（雙頁對開）模式 
-                   並啟動封面獨立（showPageControls）與流暢滾動 */
-                defaultViewMode: "TWO_COLUMN",
-                showAnnotationTools: false,
-                showLeftHandPanel: false,
-                embedMode: "SIZED_CONTAINER"
-            });
-        });
-    </script>
+        <div class="spread-block">
+            <div class="spread-left">
+                <iframe src="portfolio.pdf#page=2&zoom=page-fit&toolbar=0&navpanes=0"></iframe>
+            </div>
+            <div class="spread-right">
+                <iframe src="portfolio.pdf#page=3&zoom=page-fit&toolbar=0&navpanes=0"></iframe>
+            </div>
+        </div>
+
+        <div class="spread-block">
+            <div class="spread-left">
+                <iframe src="portfolio.pdf#page=4&zoom=page-fit&toolbar=0&navpanes=0"></iframe>
+            </div>
+            <div class="spread-right">
+                <iframe src="portfolio.pdf#page=5&zoom=page-fit&toolbar=0&navpanes=0"></iframe>
+            </div>
+        </div>
+
+        <div class="single-page-block">
+            <iframe src="portfolio.pdf#page=6&zoom=page-fit&toolbar=0&navpanes=0"></iframe>
+        </div>
+
+    </main>
 
 </body>
 </html>

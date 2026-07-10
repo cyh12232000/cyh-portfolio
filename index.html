@@ -120,7 +120,7 @@
         /* 📱 行動裝置（手機）特化分流規則 */
         @media (max-width: 768px) {
             body {
-                overflow: auto !important; /* 手機版解鎖滑動 */
+                overflow: auto !important; /* 手機版解鎖全網頁滑動 */
             }
             
             header {
@@ -136,11 +136,11 @@
             }
 
             .desktop-viewer {
-                display: none !important; /* 手機版拔除卡死的電腦版元件 */
+                display: none !important; /* 手機版精準拔除會卡死的電腦版嵌入組件 */
             }
 
             .mobile-viewer {
-                display: block !important; /* 手機版啟用可以在頁面上直接閱讀的 Google 預覽器 */
+                display: block !important; /* 手機版啟用順暢直接滑動的 Google 預覽器 */
                 width: 100%;
                 height: 100%;
             }
@@ -158,6 +158,7 @@
     </header>
 
     <main class="pdf-container">
+        <!-- 💻 電腦桌機版：維持最高規格的雙頁檢視與精準斜角對齊提示 (↙) -->
         <div class="desktop-viewer">
             <div class="top-right-notice">
                 <span class="text-label">雙頁檢視</span><span class="arrow">↙</span>
@@ -165,8 +166,9 @@
             <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf">
         </div>
 
+        <!-- 💡 手機行動版：直接在網頁頁面上嵌入 Google 雲端視窗，完美滑動閱讀不卡死 -->
         <div class="mobile-viewer">
-            <iframe src="https://docs.google.com/viewer?url=https://cyh-portfolio-gray.vercel.app/portfolio.pdf&embedded=true"></iframe>
+            <iframe src="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/preview" allow="autoplay"></iframe>
         </div>
     </main>
 

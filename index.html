@@ -70,11 +70,11 @@
             position: relative;
         }
 
-        /* 💡 終極對齊：懸浮提示字樣與三個點的精準對齊 */
+        /* 💡 微調：改成斜角斜指三個點的懸浮字樣 */
         .top-right-notice {
             position: absolute;
-            top: -24px; /* 緊貼在內嵌閱讀器黑邊上方 */
-            right: 13px; /* 🌟 核心微調：讓這個點剛好落在三個點的垂直中線上 */
+            top: -26px; /* 稍微往上一點點，讓斜指的角度更漂亮 */
+            right: 8px;  /* 往最右邊靠，給 ↙ 留出向左下延伸的動態空間 */
             font-size: 0.8rem;
             color: #888;
             letter-spacing: 0.5px;
@@ -84,15 +84,14 @@
             animation: fadeInOut 2s infinite alternate;
         }
 
-        /* 將「雙頁檢視」與「↓」的距離優雅拉開 */
+        /* 控制「雙頁檢視」與「↙」的完美距離 */
         .top-right-notice .text-label {
-            margin-right: 14px; /* 控制文字與箭頭的橫向距離 */
+            margin-right: 12px; 
         }
 
         .top-right-notice .arrow {
             font-weight: bold;
             display: inline-block;
-            transform: scaleX(0.9); /* 讓箭頭線條在視覺上更對齊圓點的中心 */
         }
 
         @keyframes fadeInOut {
@@ -137,8 +136,9 @@
     </header>
 
     <main class="pdf-container">
+        <!-- 💡 換成斜角箭頭，精準朝左下方指向功能選單 -->
         <div class="top-right-notice">
-            <span class="text-label">雙頁檢視</span><span class="arrow">↓</span>
+            <span class="text-label">雙頁檢視</span><span class="arrow">↙</span>
         </div>
         
         <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf" style="width:100%; height:100%;">

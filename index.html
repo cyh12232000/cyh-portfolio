@@ -106,10 +106,10 @@
         }
 
         .mobile-viewer {
-            display: none; /* 預設電腦版隱藏手機提示區塊 */
+            display: none; /* 預設電腦版隱藏手機組件 */
         }
 
-        embed {
+        embed, iframe {
             width: 100%;
             height: 100%;
             border: 1px solid #e0e0e0;
@@ -117,44 +117,10 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
-        /* 📱 手機板專屬極簡引導按鈕樣式 */
-        .mobile-box {
-            width: 100%;
-            height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px dashed #ccc;
-            background-color: #fff;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .mobile-box p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .btn-mobile-drive {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #111;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
         /* 📱 行動裝置（手機）特化分流規則 */
         @media (max-width: 768px) {
             body {
-                overflow: auto !important; /* 手機版解鎖全網頁滑動 */
+                overflow: auto !important; /* 手機版解鎖滑動 */
             }
             
             header {
@@ -165,16 +131,18 @@
             }
 
             .pdf-container {
-                height: auto; 
+                height: 75vh; /* 讓手機版預覽窗格維持好看的高比例 */
                 padding: 0 20px;
             }
 
             .desktop-viewer {
-                display: none !important; /* 手機版完全拔除那個會卡死的 embed 標籤 */
+                display: none !important; /* 手機版拔除卡死的電腦版元件 */
             }
 
             .mobile-viewer {
-                display: block !important; /* 手機版啟用貼心的 Google Drive 按鈕區塊 */
+                display: block !important; /* 手機版啟用可以在頁面上直接閱讀的 Google 預覽器 */
+                width: 100%;
+                height: 100%;
             }
         }
     </style>
@@ -190,7 +158,6 @@
     </header>
 
     <main class="pdf-container">
-        <!-- 💡 電腦桌機版：維持最高規格的雙頁檢視與精準對齊提示 -->
         <div class="desktop-viewer">
             <div class="top-right-notice">
                 <span class="text-label">雙頁檢視</span><span class="arrow">↙</span>
@@ -198,14 +165,8 @@
             <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf">
         </div>
 
-        <!-- 💡 手機行動版：捨棄卡死的內嵌，改用最優雅的 Google Drive 直接開啟 -->
         <div class="mobile-viewer">
-            <div class="mobile-box">
-                <p>偵測到您正在使用行動裝置。<br>為了提供最佳的流暢度與縮放解析度：</p>
-                <a href="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/view?usp=sharing" target="_blank" class="btn-mobile-drive">
-                    📱 點此於 Google 雲端開啟作品集
-                </a>
-            </div>
+            <iframe src="https://docs.google.com/viewer?url=https://cyh-portfolio-gray.vercel.app/portfolio.pdf&embedded=true"></iframe>
         </div>
     </main>
 

@@ -16,7 +16,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* 防止整個網頁大視窗亂滾動 */
+            overflow: hidden; /* 預設在電腦版鎖死大視窗，避免混亂滾動 */
         }
 
         header {
@@ -70,11 +70,11 @@
             position: relative;
         }
 
-        /* 💡 微調：改成斜角斜指三個點的懸浮字樣 */
+        /* 精準懸浮在右上角選單按鈕正上方的極簡字樣 */
         .top-right-notice {
             position: absolute;
-            top: -26px; /* 稍微往上一點點，讓斜指的角度更漂亮 */
-            right: 8px;  /* 往最右邊靠，給 ↙ 留出向左下延伸的動態空間 */
+            top: -26px; 
+            right: 8px;  
             font-size: 0.8rem;
             color: #888;
             letter-spacing: 0.5px;
@@ -84,7 +84,6 @@
             animation: fadeInOut 2s infinite alternate;
         }
 
-        /* 控制「雙頁檢視」與「↙」的完美距離 */
         .top-right-notice .text-label {
             margin-right: 12px; 
         }
@@ -108,17 +107,31 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
-        /* 行動裝置彈性調整 */
+        /* 📱 關鍵修正：行動裝置/手機板專屬優化規則 */
         @media (max-width: 768px) {
+            body {
+                overflow: auto !important; /* 1. 強制解除全域鎖定，讓手機可以自由上下滑動 */
+            }
+            
             header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
                 padding: 20px;
             }
+
             .pdf-container {
-                height: calc(100vh - 180px);
+                height: auto; /* 2. 讓外殼高度隨 PDF 內容自動延伸撐開 */
+                min-height: 80vh;
+                padding-bottom: 40px;
+                -webkit-overflow-scrolling: touch; /* 3. 確保 iOS 瀏覽器滑動時有流暢的物理慣性 */
             }
+
+            embed {
+                height: 80vh; /* 4. 在手機上給予一個舒服的固定視窗高度 */
+            }
+
+            /* 手機版原生介面不同且空間有限，自動隱藏提示 */
             .top-right-notice {
                 display: none;
             }
@@ -136,7 +149,6 @@
     </header>
 
     <main class="pdf-container">
-        <!-- 💡 換成斜角箭頭，精準朝左下方指向功能選單 -->
         <div class="top-right-notice">
             <span class="text-label">雙頁檢視</span><span class="arrow">↙</span>
         </div>

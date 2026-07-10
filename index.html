@@ -42,6 +42,17 @@
             margin: 5px 0 0 0;
         }
 
+        /* 💡 新增：優雅的雙頁檢視提示樣式 */
+        .notice {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 8px 0 0 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: 0.5px;
+        }
+
         /* 下載按鈕 */
         .btn-download {
             display: inline-block;
@@ -89,6 +100,10 @@
             .pdf-container {
                 height: calc(100vh - 180px);
             }
+            /* 手機版直式閱讀不需要提示雙頁，故自動隱藏維持畫面乾淨 */
+            .notice {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -98,6 +113,9 @@
         <div class="info">
             <h1>HUANG CHENG-YU</h1>
             <p>Architecture, Spatial Design & Curation · Portfolio</p>
+            <div class="notice">
+                <span>💡 建議點擊瀏覽器工具列「開啟雙頁檢視」以獲得最佳書本對開體驗</span>
+            </div>
         </div>
         <a href="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/view?usp=sharing" target="_blank" class="btn-download">DOWNLOAD FULL PDF</a>
     </header>

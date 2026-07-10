@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Huang Cheng-yu</title>
     <style>
-        /* 當代藝廊極簡風格 */
+        /* 當代藝廊極簡視覺風格 */
         body {
             margin: 0;
             padding: 0;
@@ -16,6 +16,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow: hidden;
         }
 
         header {
@@ -59,11 +60,11 @@
             color: #fff;
         }
 
-        /* PDF 觀看區域 */
+        /* 作品集核心檢視區域 */
         .pdf-container {
             width: 100%;
             max-width: 1200px;
-            height: calc(100vh - 140px); /* 自動填滿螢幕扣除頁首 */
+            height: calc(100vh - 140px);
             padding: 0 20px 30px 20px;
             box-sizing: border-box;
         }
@@ -75,7 +76,7 @@
             background-color: #fff;
         }
 
-        /* 手機板優化 */
+        /* 行動裝置/手機板版面優化 */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -96,13 +97,11 @@
             <h1>HUANG CHENG-YU</h1>
             <p>Architecture, Spatial Design & Curation · Portfolio</p>
         </div>
-        <!-- 確保 portfolio.pdf 路徑正確 -->
-        <a href="portfolio.pdf" download class="btn-download">DOWNLOAD FULL PDF</a>
+        <a href="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/view?usp=sharing" target="_blank" class="btn-download">DOWNLOAD FULL PDF</a>
     </header>
 
     <main class="pdf-container">
-        <!-- 內建瀏覽器原生 PDF 閱讀器 -->
-        <iframe src="portfolio.pdf#toolbar=0" type="application/pdf"></iframe>
+        <iframe src="https://unpkg.com/@pdfjs-viewer/simple@1.0.1/dist/viewer.html?file=/portfolio.pdf#page=1&zoom=page-fit&pagemode=book" frameborder="0"></iframe>
     </main>
 
 </body>

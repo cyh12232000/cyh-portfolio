@@ -42,15 +42,15 @@
             margin: 5px 0 0 0;
         }
 
-        /* 💡 微調：讓下載按鈕變得更小、更精緻極簡 */
+        /* 精緻極簡的下載按鈕 */
         .btn-download {
             display: inline-block;
-            padding: 6px 14px; /* 縮小內襯間距 */
+            padding: 6px 14px; 
             border: 1px solid #111;
             background-color: transparent;
             color: #111;
             text-decoration: none;
-            font-size: 0.75rem; /* 字體再縮小 */
+            font-size: 0.75rem; 
             letter-spacing: 0.8px;
             transition: all 0.2s ease;
         }
@@ -70,24 +70,29 @@
             position: relative;
         }
 
-        /* 精準懸浮在右上角選單按鈕正上方的極簡字樣 */
+        /* 💡 終極對齊：懸浮提示字樣與三個點的精準對齊 */
         .top-right-notice {
             position: absolute;
-            top: -25px; /* 緊貼在 PDF 視窗頂部黑邊的上方 */
-            right: 15px; /* 完美對齊三個點的正上方 */
+            top: -24px; /* 緊貼在內嵌閱讀器黑邊上方 */
+            right: 13px; /* 🌟 核心微調：讓這個點剛好落在三個點的垂直中線上 */
             font-size: 0.8rem;
             color: #888;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            pointer-events: none; /* 確保不阻擋滑鼠點擊 */
-            animation: fadeInOut 2s infinite alternate; /* 淡淡的呼吸效果 */
+            pointer-events: none;
+            animation: fadeInOut 2s infinite alternate;
         }
 
-        /* 讓文字與箭頭拉開適當空間 */
+        /* 將「雙頁檢視」與「↓」的距離優雅拉開 */
+        .top-right-notice .text-label {
+            margin-right: 14px; /* 控制文字與箭頭的橫向距離 */
+        }
+
         .top-right-notice .arrow {
-            margin-left: 10px;
             font-weight: bold;
+            display: inline-block;
+            transform: scaleX(0.9); /* 讓箭頭線條在視覺上更對齊圓點的中心 */
         }
 
         @keyframes fadeInOut {
@@ -115,7 +120,6 @@
             .pdf-container {
                 height: calc(100vh - 180px);
             }
-            /* 手機版自動隱藏提示 */
             .top-right-notice {
                 display: none;
             }
@@ -134,7 +138,7 @@
 
     <main class="pdf-container">
         <div class="top-right-notice">
-            <span>雙頁檢視</span><span class="arrow">↓</span>
+            <span class="text-label">雙頁檢視</span><span class="arrow">↓</span>
         </div>
         
         <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf" style="width:100%; height:100%;">

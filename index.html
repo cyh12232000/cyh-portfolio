@@ -60,29 +60,28 @@
             color: #fff;
         }
 
-        /* 作品集外殼：設定為相對定位，方便右上角提示貼齊 */
+        /* 作品集外殼 */
         .pdf-container {
             width: 100%;
             max-width: 1200px;
             height: calc(100vh - 140px);
             padding: 0 20px 30px 20px;
             box-sizing: border-box;
-            position: relative; /* 關鍵：讓提示字以此為基準定位 */
+            position: relative;
         }
 
-        /* 💡 新增：精準懸浮在紅色圈圈（右上角工具列）上方的極簡提示 */
+        /* 💡 精準懸浮在右上角選單按鈕正上方的極簡字樣 */
         .top-right-notice {
             position: absolute;
-            top: -25px; /* 剛好懸浮在 PDF 視窗頂部邊緣的上方 */
-            right: 35px; /* 精準對齊右上角功能選單按鈕 */
+            top: -25px; /* 緊貼在 PDF 視窗頂部黑邊的上方 */
+            right: 42px; /* 精準調整垂直對齊功能選單按鈕 */
             font-size: 0.8rem;
             color: #888;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 2px;
-            pointer-events: none; /* 確保滑鼠點擊可以穿透，不擋到閱讀器按鈕 */
-            animation: fadeInOut 2s infinite alternate; /* 微弱呼吸燈效果，吸引注意 */
+            pointer-events: none; /* 確保不阻擋滑鼠點擊 */
+            animation: fadeInOut 2s infinite alternate; /* 淡淡的呼吸效果吸引注意 */
         }
 
         @keyframes fadeInOut {
@@ -110,7 +109,7 @@
             .pdf-container {
                 height: calc(100vh - 180px);
             }
-            /* 手機版不支援此工具列，自動隱藏提示 */
+            /* 手機版介面不同，自動隱藏提示 */
             .top-right-notice {
                 display: none;
             }
@@ -129,7 +128,7 @@
 
     <main class="pdf-container">
         <div class="top-right-notice">
-            打開雙頁檢視 ↘
+            雙頁檢視↓
         </div>
         
         <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf" style="width:100%; height:100%;">

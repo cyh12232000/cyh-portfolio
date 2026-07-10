@@ -16,7 +16,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* 電腦版鎖定大視窗 */
+            overflow: hidden; /* 🔒 電腦版與手機版全面鎖定大視窗，網頁背景絕不亂晃 */
         }
 
         header {
@@ -120,7 +120,7 @@
         /* 📱 行動裝置（手機）特化分流規則 */
         @media (max-width: 768px) {
             body {
-                overflow: auto !important; /* 手機版解鎖全網頁滑動 */
+                overflow: hidden !important; /* 🔒 手機版也維持強制鎖定，網頁框架不能滑動 */
             }
             
             header {
@@ -131,18 +131,24 @@
             }
 
             .pdf-container {
-                height: 75vh; /* 讓手機版預覽窗格維持好看的高比例 */
+                height: calc(100vh - 180px); /* 精算手機版扣除標題後的高度 */
                 padding: 0 20px;
             }
 
             .desktop-viewer {
-                display: none !important; /* 手機版精準拔除會卡死的電腦版嵌入組件 */
+                display: none !important;
             }
 
             .mobile-viewer {
-                display: block !important; /* 手機版啟用順暢直接滑動的 Google 預覽器 */
+                display: block !important;
                 width: 100%;
                 height: 100%;
+                overflow: auto !important; /* 🌟 只允許 Google Drive 的容器內部可以滾動 */
+                -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更具物理慣性與流暢 */
+            }
+
+            .top-right-notice {
+                display: none;
             }
         }
     </style>
@@ -158,7 +164,7 @@
     </header>
 
     <main class="pdf-container">
-        <!-- 💻 電腦桌機版：維持最高規格的雙頁檢視與精準斜角對齊提示 (↙) -->
+        <!-- 💻 電腦桌機版 -->
         <div class="desktop-viewer">
             <div class="top-right-notice">
                 <span class="text-label">雙頁檢視</span><span class="arrow">↙</span>
@@ -166,7 +172,7 @@
             <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf">
         </div>
 
-        <!-- 💡 手機行動版：直接在網頁頁面上嵌入 Google 雲端視窗，完美滑動閱讀不卡死 -->
+        <!-- 💡 手機行動版：網頁大背景完全被我們鎖死，只有這個區塊內部可以滑動 -->
         <div class="mobile-viewer">
             <iframe src="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/preview" allow="autoplay"></iframe>
         </div>

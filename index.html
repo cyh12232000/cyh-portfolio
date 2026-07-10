@@ -16,7 +16,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* 🔒 電腦版與手機版全面鎖定大視窗，網頁背景絕不亂晃 */
+            overflow: hidden; /* 🔒 電腦版與手機版全面鎖定大視窗 */
         }
 
         header {
@@ -120,19 +120,32 @@
         /* 📱 行動裝置（手機）特化分流規則 */
         @media (max-width: 768px) {
             body {
-                overflow: hidden !important; /* 🔒 手機版也維持強制鎖定，網頁框架不能滑動 */
+                overflow: hidden !important; /* 🔒 手機版網頁大框架鎖定不晃動 */
             }
             
             header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
-                padding: 20px;
+                gap: 0px;
+                padding: 20px 20px 10px 20px; /* 縮減間距讓畫面更緊湊 */
+            }
+
+            /* 🌟 核心修正 1：在手機上把下載按鈕完全拿掉，不佔空間 */
+            .btn-download {
+                display: none !important;
+            }
+
+            /* 🌟 核心修正 2：確保標題文字保持正常可見，並微調字型大小 */
+            .info h1 {
+                font-size: 1.3rem;
+            }
+            .info p {
+                font-size: 0.8rem;
             }
 
             .pdf-container {
-                height: calc(100vh - 180px); /* 精算手機版扣除標題後的高度 */
-                padding: 0 20px;
+                height: calc(100vh - 100px); /* 扣除縮減後的標題高度 */
+                padding: 0 15px 15px 15px;
             }
 
             .desktop-viewer {
@@ -143,8 +156,8 @@
                 display: block !important;
                 width: 100%;
                 height: 100%;
-                overflow: auto !important; /* 🌟 只允許 Google Drive 的容器內部可以滾動 */
-                -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更具物理慣性與流暢 */
+                overflow: auto !important; /* 只允許內嵌預覽器可滾動 */
+                -webkit-overflow-scrolling: touch;
             }
 
             .top-right-notice {
@@ -160,6 +173,7 @@
             <h1>HUANG CHENG-YU</h1>
             <p>Architecture, Spatial Design & Curation · Portfolio</p>
         </div>
+        <!-- 這個按鈕在手機上會自動隱藏，電腦上依然保留 -->
         <a href="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/view?usp=sharing" target="_blank" class="btn-download">DOWNLOAD FULL PDF</a>
     </header>
 
@@ -172,7 +186,7 @@
             <embed src="portfolio.pdf#view=Fit&newwindow=0&pagemode=thumbs&page=1&scrollbar=1&toolbar=1&statusbar=0&messages=0&navpanes=0&zoom=page-fit&view=FitH&singlepage=false&twopage=true&bookmode=true" type="application/pdf">
         </div>
 
-        <!-- 💡 手機行動版：網頁大背景完全被我們鎖死，只有這個區塊內部可以滑動 -->
+        <!-- 💡 手機行動版 -->
         <div class="mobile-viewer">
             <iframe src="https://drive.google.com/file/d/168tyOLU7ATKv_WAzLowzdNmtyZ8RsDkw/preview" allow="autoplay"></iframe>
         </div>
